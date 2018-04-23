@@ -38,8 +38,9 @@ sudo mv $ncsdk_pkg* NCSDK
 cd /opt/movidius/NCSDK
 cp /tmp/ncsdk.conf .
 
-sed -i 's/udevadm control --reload-rules//g' ./install-ncsdk.sh
-sed -i 's/udevadm trigger//g' ./install-ncsdk.sh
+sed -i 's/\$SUDO_PREFIX udevadm control --reload-rules/\#\$SUDO_PREFIX udevadm control --reload-rules/g' ./install-ncsdk.sh
+sed -i 's/\$SUDO_PREFIX udevadm trigger/\#\$SUDO_PREFIX udevadm/g' ./install-ncsdk.sh
+sed -i 's/\$SUDO_PREFIX usermod/\#\$SUDO_PREFIX usermod/g' ./install-ncsdk.sh
 ./install-ncsdk.sh
 
 # leave the uninstall script on the target
